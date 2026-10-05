@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SVSS Nursery | Grow your green space</title>
+<meta name="description" content="SVSS Nursery - healthy plants straight from our nursery. Indoor, flowering, fruit, herbal plants, pots and soil.">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ea;--green:#14503a;--leaf:#2a7a52;--ink:#1d2a22;--mute:#5f6b63;--line:#e6e2d4;--tint:#e4eddc}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{font:15px/1.6 Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;line-height:1.1}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--leaf);outline-offset:2px}
+@keyframes fadeUp{0%{opacity:0;transform:translateY(18px) scale(.98)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes softFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 rgba(20,80,58,0)}50%{box-shadow:0 10px 25px rgba(20,80,58,.14)}}
+.hw{font:500 22px/1.15 Caveat,cursive;color:#7e8a80;transform:rotate(-8deg)}
+.nav{position:sticky;top:0;z-index:9;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 5vw;padding-top:calc(12px + env(safe-area-inset-top,0));background:var(--bg);border-bottom:1px solid var(--line);animation:fadeUp .7s ease both}
+.logo{font:700 21px 'Playfair Display',Georgia,serif;color:var(--green);display:flex;align-items:center;gap:6px}
+.nav nav{display:flex;gap:30px;font-weight:500}
+.nav nav a{padding:4px 0;border-bottom:2px solid transparent}
+.nav nav a.on,.nav nav a:hover{border-color:var(--green)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--green);color:#fff;border:0;border-radius:8px;padding:10px 20px;font:600 14px Inter,sans-serif;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,background .25s ease;animation:pulseGlow 4s ease-in-out infinite}
+.btn:hover{background:var(--leaf);transform:translateY(-2px) scale(1.01);box-shadow:0 12px 30px rgba(20,80,58,.16)}
+.btn.out{background:#fff;color:var(--green);border:1.5px solid var(--green)}
+.btn.sm{padding:7px 14px;font-size:13px}
+svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.kick{color:var(--leaf);font-weight:600;font-size:12px;letter-spacing:.12em}
+.lf{position:absolute;opacity:.18;pointer-events:none}
+.hero{display:grid;grid-template-columns:1fr 1.25fr;background:linear-gradient(100deg,var(--bg) 60%,#e9efdf)}
+.hero .tx{padding:56px 3vw 56px 5vw;position:relative;overflow:hidden;animation:fadeUp .8s ease both}
+.hero h1{font-size:clamp(46px,6.5vw,84px);color:var(--green);margin:12px 0 14px;animation:fadeUp .9s ease both}
+.hero p{font-size:19px;margin-bottom:24px;animation:fadeUp .95s ease both}
+.row{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp 1s ease both}
+.trust{display:flex;gap:18px;flex-wrap:wrap;color:var(--mute);font-size:12.5px;margin-top:26px}
+.trust span{display:flex;gap:6px;align-items:center}
+.trust svg{color:var(--leaf)}
+.hero .hw{position:absolute;right:1.5vw;top:96px;width:90px;animation:softFloat 4s ease-in-out infinite}
+.col{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:1fr 1fr;gap:4px;min-height:430px;animation:fadeUp .9s ease both}
+.col img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease,filter .5s ease}
+.col img:first-child{grid-row:span 2}
+.col img:hover{transform:scale(1.02)}
+.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:22px 5vw 6px}
+.cat{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;text-align:left;font:500 14px Inter,sans-serif;padding:0;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;animation:fadeUp .8s ease both}
+.cat img{width:100%;height:110px;object-fit:cover;display:block;transition:transform .45s ease}
+.cat span{display:flex;justify-content:space-between;align-items:center;padding:10px 12px}
+.cat b{width:24px;height:24px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-weight:400}
+.cat:hover{border-color:var(--green);transform:translateY(-4px);box-shadow:0 12px 30px rgba(20,80,58,.08)}
+.cat:hover img{transform:scale(1.05)}
+.sech{display:flex;justify-content:space-between;align-items:baseline;padding:34px 5vw 14px}
+.sech h2{font-size:30px}
+.sech a{color:var(--green);font-weight:600;font-size:14px}
+.feat{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;padding:0 5vw 36px}
+.fc{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:fadeUp .8s ease both}
+.fc img{width:96px;height:118px;object-fit:cover;border-radius:8px;transition:transform .35s ease}
+.fc div{display:flex;flex-direction:column;gap:2px;flex:1}
+.fc h3{font:600 15px Inter,sans-serif}
+.fc:hover{transform:translateY(-4px);border-color:var(--green);box-shadow:0 12px 28px rgba(20,80,58,.08)}
+.fc:hover img{transform:scale(1.04)}
+.m{color:var(--mute);font-size:12.5px}
+.price{font-weight:700;font-size:19px}
+.ban{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,#e9efdf 40%,var(--bg));min-height:150px;padding-left:5vw;overflow:hidden;position:relative}
+.ban h2{font-size:clamp(34px,5vw,54px);margin:6px 0}
+.ban .hw{position:absolute;left:52%;top:40px;width:80px;animation:softFloat 5s ease-in-out infinite}
+.ban img{height:150px;width:44%;object-fit:cover;object-position:left;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}
+.shop{display:grid;grid-template-columns:240px 1fr;gap:22px;padding:26px 5vw 44px;align-items:start}
+.flt{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;animation:fadeUp .85s ease both}
+.flt h3{font:600 16px Inter,sans-serif;display:flex;justify-content:space-between;margin-bottom:6px}
+.flt h3 button{background:none;border:0;color:var(--green);font-weight:600;cursor:pointer;font-size:13px}
+.flt details{border-top:1px solid var(--line);padding:10px 0 4px}
+.flt summary{font-weight:600;font-size:14px;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+.flt summary::after{content:"⌄"}
+.flt label{display:flex;gap:8px;align-items:center;font-size:13px;padding:2px 0;cursor:pointer}
+.flt input{width:auto}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;color:var(--mute);font-size:13px}
+select,input,textarea{padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;font:inherit;width:100%}
+.bar select{width:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease;animation:fadeUp .8s ease both}
+.iw{position:relative}
+.card img{width:100%;height:160px;object-fit:cover;cursor:pointer;display:block;transition:transform .35s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 25px rgba(20,80,58,.08)}
+.card:hover img{transform:scale(1.03)}
+.hb{position:absolute;right:8px;top:8px;width:32px;height:32px;border-radius:50%;border:0;background:#fff;display:grid;place-items:center;cursor:pointer;color:var(--ink);transition:transform .2s ease,box-shadow .2s ease}
+.hb:hover{transform:scale(1.08);box-shadow:0 5px 16px rgba(214,51,90,.16)}
+.hb.on{color:#d6335a}.hb.on svg{fill:#d6335a}
+.card .b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:3px;flex:1}
+.card h3{font:600 15px Inter,sans-serif}
+.f{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px}
+.empty{padding:40px;text-align:center;color:var(--mute)}
+.crumb{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:24px 5vw 0;color:var(--mute);font-size:13px}
+.crumb span{display:flex;gap:6px;align-items:center;color:var(--green)}
+.det{display:grid;grid-template-columns:1.15fr 1fr;gap:34px;padding:16px 5vw 22px}
+.gal{display:grid;grid-template-columns:1fr 84px;gap:10px;align-items:start}
+.gal .iw>img{width:100%;height:400px;object-fit:cover;border-radius:12px;display:block}
+.bs{position:absolute;left:12px;top:12px;background:var(--green);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:6px}
+.zoom{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.55);color:#fff;border:0;border-radius:8px;padding:7px 12px;font:500 12px Inter,sans-serif;cursor:pointer;display:flex;gap:6px;align-items:center}
+.th{display:flex;flex-direction:column;gap:8px}
+.th img{width:84px;height:86px;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer}
+.th img.on{border-color:var(--green)}
+.det h1{font-size:46px;margin:4px 0}
+.det .price{font-size:32px;margin:10px 0}
+.sizes{display:flex;gap:10px;margin:6px 0 18px}
+.sizes button{padding:8px 24px;border:1.5px solid var(--line);background:#fff;border-radius:8px;font:500 14px Inter,sans-serif;cursor:pointer}
+.sizes button.on{border-color:var(--green);background:var(--tint)}
+.det .trust{margin-top:16px}
+.care{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:0 5vw}
+.care div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:center;transition:transform .25s ease,box-shadow .25s ease;border-color .25s ease;animation:fadeUp .8s ease both}
+.care div:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(20,80,58,.08);border-color:var(--green)}
+.care i{font-style:normal;font-size:24px;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;flex:none}.care b{display:block}
+#about{padding:50px 5vw 10px;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+#about h2{font-size:38px;margin:6px 0 12px}
+#about p{color:var(--mute);margin-bottom:10px}
+#about img{width:100%;height:280px;object-fit:cover;border-radius:14px}
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:26px;padding:44px 5vw 40px;position:relative;overflow:hidden}
+.ct h2{font-size:42px;margin:6px 0 10px}
+.info{display:flex;gap:14px;align-items:center;padding:9px 0}
+.info i{font-style:normal;width:44px;height:44px;border-radius:50%;background:var(--tint);display:grid;place-items:center;flex:none}
+.info u{color:var(--green);font-weight:600;margin-left:auto}
+.ct .hw{position:absolute;right:3vw;top:160px;width:90px}
+.pic{position:relative;margin-top:14px;border-radius:14px;overflow:hidden}
+.pic img{width:100%;height:290px;object-fit:cover;display:block}
+.pic p{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 14px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.7));font-size:14px}
+form{display:grid;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;align-self:start}
+form label{font-weight:600;font-size:13px;display:grid;gap:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#loc{padding:20px 5vw 56px}
+#loc h2{font-size:34px;margin:6px 0 16px}
+.map{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#dfe8d6;min-height:380px}
+.map iframe{width:100%;height:380px;border:0;display:block}
+.mc{position:absolute;left:16px;top:16px;max-width:300px;background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.mc b{display:block}
+.mc .row{margin-top:10px}
+.foot{background:var(--green);color:#dcebdf;padding:30px 5vw;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px}
+.foot a:hover{text-decoration:underline}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;place-items:center;z-index:20;padding:20px}
+#lb.on{display:grid}
+#lb img{max-width:100%;max-height:90vh;border-radius:10px}
+@media(max-width:860px){.hero,.det,.shop,#about,.ct{grid-template-columns:1fr}.cats{grid-template-columns:repeat(2,1fr)}.care{grid-template-columns:1fr}.hw{display:none}.col{min-height:300px}.flt{order:2}.two{grid-template-columns:1fr}.gal{grid-template-columns:1fr}.th{flex-direction:row}}
+@media(max-width:560px){.nav nav{display:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.2-6.5C9.5 13.8 12 13 14 11"/></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+<symbol id="wa" viewBox="0 0 24 24"><path d="M3 21l1.7-5A9 9 0 1 1 8 19.4z"/><path d="M9 9c0 3 3 6 6 6l1.2-1.4-2-1-1 .6c-1-.5-1.7-1.200-2.2-2.200l.6-1-1-2z"/></symbol>
+<symbol id="ph" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.600-3.100 19.500 19.500 0 0 1-6-6A19.800 19.800 0 0 1 2.100 4.200 2 2 0 0 1 4.100 2h3a2 2 0 0 1 2 1.700c.1 1 .4 1.900.7 2.800a2 2 0 0 1-.5 2.100L8.100 9.900a16 16 0 0 0 6 6l1.300-1.300a2 2 0 0 1 2.100-.4c.9.3 1.800.6 2.800.7a2 2 0 0 1 1.700 2z"/></symbol>
+<symbol id="tr" viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.500" cy="18.500" r="2"/><circle cx="18.500" cy="18.500" r="2"/></symbol>
+<symbol id="us" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.500"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6M17 4a3.500 3.500 0 0 1 0 7M22 20c0-3-1.500-5-4-5.700"/></symbol>
+</defs></svg>
+
+<header class="nav"><a class="logo" href="#home"><svg class="i" style="width:26px;height:26px;color:var(--leaf)"><use href="#leaf"/></svg>SVSS Nursery</a>
+<nav id="nv"><a href="#home">Home</a><a href="#plants">Plants</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+<a class="btn" data-wa="I want to enquire about plants" target="_blank" rel="noopener"><svg class="i"><use href="#leaf"/></svg>Enquire</a></header>
+
+<section class="hero" id="home"><div class="tx"><svg class="lf" style="left:-40px;top:200px;width:150px;height:150px;color:var(--leaf)"><use href="#leaf"/></svg><span class="kick">PLANTS TODAY &nbsp;·&nbsp; A GREENER TOMORROW</span><h1>Grow your green space</h1><p>Healthy plants straight from our nursery</p>
+<div class="row"><a class="btn" href="#plants"><svg class="i"><use href="#leaf"/></svg>Browse Plants →</a><a class="btn out" data-wa="I want to know about your plants" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>WhatsApp Us</a></div>
+<div class="trust"><span><svg class="i"><use href="#tr"/></svg>Fresh from our nursery</span><span><svg class="i"><use href="#leaf"/></svg>Wide variety</span><span><svg class="i"><use href="#us"/></svg>Trusted by plant lovers</span></div><div class="hw">Happier Homes Greener Tomorrows</div></div>
+<div class="col"><img src="images/hero1.jpg" alt="Garden with a Good Plants Brighter Days sign"><img src="images/hero2.jpg" alt="Green leafy plant"><img src="images/hero3.jpg" alt="Nursery plant rows with a Plants People sign"></div></section>
+<div class="cats" id="cats"></div>
+<div class="sech"><h2>Featured Plants</h2><a href="#plants">View all plants →</a></div><div class="feat" id="feat"></div>
+
+<section id="plants"><div class="ban"><div><span class="kick">OUR PLANTS</span><h2>Find your perfect plant</h2><p>A greener home is a happier home</p></div><div class="hw">More Plants Brighter Days</div><img src="images/banner.jpg" alt="Potted plants on a shelf"></div>
+<div class="shop"><aside class="flt" id="flt"></aside><div><div class="bar"><span id="cnt"></span><label>Sort by <select id="sort"><option value="f">Featured</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option></select></label></div><div class="grid" id="grid"></div></div></div></section>
+
+<section id="detail"><div class="crumb" id="crumb"></div><div class="det" id="det"></div><div class="care" id="care"></div><div class="sech"><h2>You may also like</h2><a href="#plants">View all plants →</a></div><div class="feat" id="like"></div></section>
+
+<section id="about"><div><span class="kick">ABOUT US</span><h2>SVSS Nursery</h2><p>We grow healthy plants and bring them to your home and garden. Add your nursery story here: when you started, what you grow and what makes your plants special.</p><p>Visit us, pick your plants in person, or message us on WhatsApp and we will help you choose.</p></div><img src="images/garden.jpg" alt="Nursery pathway with flowering plants"></section>
+
+<section id="contact" class="ct"><svg class="lf" style="right:-30px;top:-20px;width:170px;height:170px;color:var(--leaf)"><use href="#leaf"/></svg>
+<div><span class="kick">GET IN TOUCH</span><h2>Visit SVSS Nursery</h2><p style="color:var(--mute);margin-bottom:10px">Come experience a greener, healthier tomorrow. We would love to welcome you to our nursery.</p>
+<div class="info"><i>🕗</i><div><b>Open daily 8am to 7pm</b><br><span class="m">We are here to help you find the perfect plants.</span></div></div>
+<div class="info"><i>📞</i><div><b>Call Us</b><br><span class="m" id="ph"></span></div></div>
+<div class="info"><i>💬</i><div><b>WhatsApp</b><br><span class="m" id="ph2"></span></div><a data-wa="I want to enquire about plants" target="_blank" rel="noopener"><u>Chat on WhatsApp →</u></a></div>
+<div class="pic"><img src="images/garden.jpg" alt="Nursery pathway with flowering plants"><p>Visit us and explore a wide variety of plants, get expert advice, and take home happiness.</p></div></div>
+<div class="hw">Plants People Greener Tomorrows</div>
+<form id="cf"><span class="kick">SEND US A MESSAGE</span><h2 style="font-size:32px">Enquire Now</h2><span class="m" style="font-size:13.5px">Have a question or looking for a specific plant? Drop us a message and we will get back to you soon.</span>
+<div class="two"><label>Name<input required name="name" placeholder="Your name"></label><label>Phone<input required name="phone" placeholder="Your phone number"></label></div>
+<label>Which plants?<select name="pl" id="pl"></select></label><label>Message<textarea rows="3" name="msg" placeholder="Tell us more about your requirement..."></textarea></label><button class="btn"><svg class="i"><use href="#leaf"/></svg>Send Enquiry</button></form></section>
+
+<section id="loc"><span class="kick">FIND US</span><h2>Our location</h2><div class="map"><iframe id="mapf" title="SVSS Nursery on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="mc"><b>SVSS Nursery</b><span class="m" id="ad"></span><div class="row"><a class="btn sm" id="dir" target="_blank" rel="noopener">Get directions</a><a class="btn sm out" id="big" target="_blank" rel="noopener">View larger map</a></div></div></div></section>
+
+<footer class="foot"><div><b style="font-size:18px">🌿 SVSS Nursery</b><br>Plants today, a greener tomorrow.</div><div><a href="#plants">Plants</a> · <a href="#about">About</a> · <a href="#contact">Contact</a></div><div id="fp"></div></footer>
+<div id="lb" role="dialog" aria-label="Plant photo"><img alt=""></div>
+
+<script>
+// ===== EDIT: your real details =====
+const WA="918074172504",PHONE="+91 80741 72504";
+const ADDRESS="Industrial Colony Rd, Dowlaiswaram Industrial Estate, Dhavaleswaram, Rajahmundry, Andhra Pradesh 533125";
+const MAPQ="Industrial Colony Rd, Dowlaiswaram Industrial Estate, Dhavaleswaram, Rajahmundry, Andhra Pradesh 533125";
+// Plants: change names, prices, photos (put your files in the images folder)
+const SZ={S:"Small (up to 1 ft)",M:"Medium (1–3 ft)",L:"Large (above 3 ft)"},LT=["Low Light","Indirect Light","Full Sun"];
+const CATS=[["Indoor Plants","cat-indoor","Indoor Plants"],["Flowering Plants","cat-flowering","Flowering Plants"],["Fruit Trees","cat-fruit","Fruit Trees"],["Herbal","cat-herbal","Herbal and Medicinal"],["Pots and Soil","cat-pots","Pots and Soil"]];
+const PR=[["Under ₹100",0,99],["₹100 – ₹200",100,200],["₹200 – ₹500",201,500],["Above ₹500",501,1e9]];
+const P=[
+{id:1,n:"Money Plant",c:"Indoor Plants",z:"M",l:1,p:120,im:"money",t:"Brighten your space with fresh greens"},
+{id:2,n:"Hibiscus",c:"Flowering Plants",z:"M",l:2,p:80,im:"hibiscus",t:"Vibrant blooms all season"},
+{id:3,n:"Mango Sapling",c:"Fruit Trees",z:"L",l:2,p:250,im:"mango",t:"Grow your own mangoes at home"},
+{id:4,n:"Tulsi",c:"Herbal",z:"S",l:2,p:40,im:"tulsi",t:"Sacred. Healthy. Always useful."},
+{id:5,n:"Rose Plant",c:"Flowering Plants",z:"M",l:2,p:90,im:"rose",t:"Classic blooms for any garden"},
+{id:6,n:"Jasmine",c:"Flowering Plants",z:"M",l:1,p:70,im:"jasmine",t:"Fragrant white flowers"},
+{id:7,n:"Snake Plant",c:"Indoor Plants",z:"M",l:0,p:180,im:"snake",best:1,t:"Tough. Beautiful. Purifies your air.",d:"The Snake Plant (Sansevieria) is a low-maintenance indoor plant known for its striking upright leaves and air-purifying qualities. Perfect for homes and offices, it thrives in a variety of conditions and is a great choice for both beginners and plant lovers.",g:["snake-main","snake-t1","snake-t2","snake-t3","snake-t4"]},
+{id:8,n:"Lemon Tree",c:"Fruit Trees",z:"L",l:2,p:220,im:"lemon",t:"Fresh lemons from your own tree"},
+{id:9,n:"Aloe Vera",c:"Herbal",z:"S",l:1,p:60,im:"aloe",pt:"aloe-p",t:"Healing goodness at home"},
+{id:10,n:"Areca Palm",c:"Indoor Plants",z:"L",l:1,p:300,im:"areca",pt:"areca-p",t:"Bring a tropical touch indoors"},
+{id:11,n:"ZZ Plant",c:"Indoor Plants",z:"M",l:0,p:200,im:"zz",t:"Stylish. Strong. Super low maintenance."},
+{id:12,n:"Terracotta Pot",c:"Pots and Soil",z:"S",l:0,p:150,im:"cat-pots",t:"Classic clay pot with drainage"}];
+const $=s=>document.querySelector(s),src=n=>`images/${n}.jpg`,ic=n=>`<svg class="i"><use href="#${n}"/></svg>`;
+const wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent("Hi SVSS Nursery, "+t)}`;
+document.querySelectorAll("[data-wa]").forEach(a=>a.href=wa(a.dataset.wa));
+$("#ph").textContent=PHONE;$("#ph2").textContent=PHONE;$("#ad").textContent=ADDRESS;$("#fp").innerHTML=`📞 ${PHONE}<br>📍 ${ADDRESS}`;
+const q=encodeURIComponent(MAPQ);$("#mapf").src=`https://www.google.com/maps?q=${q}&output=embed`;
+$("#dir").href=`https://www.google.com/maps/dir/?api=1&destination=${q}`;$("#big").href=`https://www.google.com/maps/search/?api=1&query=${q}`;
+$("#pl").innerHTML="<option>Select an option</option>"+P.map(p=>`<option>${p.n}</option>`).join("");
+let F={cat:[],z:[],l:[],pr:[],sort:"f"},cur=P[6],fav=new Set();
+const open=id=>{cur=P.find(p=>p.id==id);detail();$("#detail").scrollIntoView()};
+const feat=p=>`<div class="fc" data-id="${p.id}"><img src="${src(p.pt||p.im)}" alt="${p.n}"><div><h3>${p.n}</h3><span class="m">${p.t}</span><span class="price">₹${p.p}</span><a class="btn sm" target="_blank" rel="noopener" href="${wa("I want to enquire about "+p.n)}" onclick="event.stopPropagation()">${ic("leaf")}Enquire</a></div></div>`;
+$("#cats").innerHTML=CATS.map(c=>`<button class="cat" data-c="${c[0]}"><img src="${src(c[1])}" alt="${c[2]}"><span>${c[2]} <b>→</b></span></button>`).join("");
+$("#feat").innerHTML=P.slice(0,4).map(feat).join("");
+const chk=(g,k,items,cnt)=>`<details open><summary>${g}</summary>${items.map(([v,t])=>`<label><input type="checkbox" data-k="${k}" value="${v}" ${F[k].includes(String(v))?"checked":""}> ${t} (${cnt(v)})</label>`).join("")}</details>`;
+function shop(){
+ const ok=p=>(!F.cat.length||F.cat.includes(p.c))&&(!F.z.length||F.z.includes(p.z))&&(!F.l.length||F.l.includes(String(p.l)))&&(!F.pr.length||F.pr.some(i=>p.p>=PR[i][1]&&p.p<=PR[i][2]));
+ const r=P.filter(ok);if(F.sort=="lo")r.sort((a,b)=>a.p-b.p);if(F.sort=="hi")r.sort((a,b)=>b.p-a.p);
+ $("#flt").innerHTML=`<h3>Filters <button id="clr">Clear all</button></h3>`+chk("Category","cat",CATS.map(c=>[c[0],c[2]]),v=>P.filter(p=>p.c==v).length)+chk("Size","z",Object.entries(SZ),v=>P.filter(p=>p.z==v).length)+chk("Sunlight","l",LT.map((t,i)=>[i,t]),v=>P.filter(p=>p.l==v).length)+chk("Price","pr",PR.map((x,i)=>[i,x[0]]),v=>P.filter(p=>p.p>=PR[v][1]&&p.p<=PR[v][2]).length);
+ $("#cnt").textContent=r.length+" plants";$("#sort").value=F.sort;
+ $("#grid").innerHTML=r.length?r.map(p=>`<article class="card"><div class="iw"><img src="${src(p.im)}" alt="${p.n}" data-id="${p.id}"><button class="hb ${fav.has(p.id)?"on":""}" data-h="${p.id}" aria-label="Save ${p.n}">${ic("heart")}</button></div><div class="b"><h3>${p.n}</h3><span class="m">🪴 ${SZ[p.z]}</span><div class="f"><span class="price">₹${p.p}</span><a class="btn sm" target="_blank" rel="noopener" href="${wa("I want to enquire about "+p.n)}">${ic("leaf")}Enquire</a></div></div></article>`).join(""):`<p class="empty">No plants match these filters. Clear a filter to see more.</p>`;
+ $("#clr").onclick=()=>{F={cat:[],z:[],l:[],pr:[],sort:"f"};shop()};
+ document.querySelectorAll("[data-k]").forEach(i=>i.onchange=()=>{const a=F[i.dataset.k];i.checked?a.push(i.value):a.splice(a.indexOf(i.value),1);shop()});
+ document.querySelectorAll("#grid img").forEach(i=>i.onclick=()=>open(i.dataset.id));
+ document.querySelectorAll(".hb").forEach(b=>b.onclick=()=>{const id=+b.dataset.h;fav.has(id)?fav.delete(id):fav.add(id);b.classList.toggle("on")});
+}
+$("#sort").onchange=e=>{F.sort=e.target.value;shop()};
+document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{F={cat:[b.dataset.c],z:[],l:[],pr:[],sort:F.sort};shop();$("#plants").scrollIntoView()});
+function detail(){
+ const p=cur,g=p.g||[p.im];let size=p.z;
+ $("#crumb").innerHTML=`<div><a href="#plants">← Back to Plants</a> › ${CATS.find(c=>c[0]==p.c)[2]} › ${p.n}</div><span>${ic("leaf")}Greener Homes Happier Lives</span>`;
+ $("#det").innerHTML=`<div class="gal"><div class="iw"><img id="bigimg" src="${src(g[0])}" alt="${p.n}">${p.best?'<span class="bs">✓ Bestseller</span>':""}<button class="zoom" id="zm">🔍 Click to view larger</button></div><div class="th">${g.length>1?g.map((x,i)=>`<img class="${i?"":"on"}" src="${src(x)}" alt="${p.n} view ${i+1}">`).join(""):""}</div></div>
+ <div><span class="kick">${p.c.toUpperCase()}</span><h1>${p.n}</h1><p style="font-size:16px;color:var(--mute)">${p.t}</p><div class="price">₹${p.p} <small class="m">Inclusive of all taxes</small></div><p class="m" style="font-size:14px;margin-bottom:12px">${p.d||"Healthy and nursery-grown. Message us on WhatsApp to check size, stock and delivery."}</p>
+ <b>Size</b><div class="sizes">${Object.entries(SZ).map(([k,v])=>`<button data-z="${k}" class="${k==size?"on":""}">${v.split(" ")[0]}</button>`).join("")}</div>
+ <div class="row"><a id="wab" class="btn" style="flex:1.4" target="_blank" rel="noopener">${ic("wa")}Enquire on WhatsApp</a><a class="btn out" style="flex:1" href="tel:${PHONE.replace(/\s/g,"")}">${ic("ph")}Call Us</a></div>
+ <div class="trust"><span>${ic("tr")}Fresh from our nursery</span><span>${ic("leaf")}Healthy &amp; vibrant plants</span><span>${ic("us")}Trusted by plant lovers</span></div></div>`;
+ const upd=()=>$("#wab").href=wa(`I want to enquire about ${p.n} (${SZ[size].split(" ")[0]} size)`);upd();
+ document.querySelectorAll(".sizes button").forEach(b=>b.onclick=()=>{size=b.dataset.z;document.querySelectorAll(".sizes button").forEach(x=>x.classList.toggle("on",x==b));upd()});
+ document.querySelectorAll(".th img").forEach((t,i)=>t.onclick=()=>{$("#bigimg").src=src(g[i]);document.querySelectorAll(".th img").forEach(x=>x.classList.toggle("on",x==t))});
+ $("#zm").onclick=()=>{$("#lb img").src=$("#bigimg").src;$("#lb").classList.add("on")};
+ const w=[["☀️","#fdf0c4","Light: "+LT[p.l].toLowerCase(),["Thrives in low light but also grows well in bright, indirect light.","Keep near a bright window, away from harsh afternoon sun.","Needs 5–6 hours of direct sunlight every day."][p.l]],["💧","#dcefdc","Water: every 2 weeks","Allow soil to dry completely between waterings."],["🪨","#f1e3d3","Soil: well-drained","Use a well-draining potting mix for best results."]];
+ $("#care").innerHTML=w.map(x=>`<div><i style="background:${x[1]}">${x[0]}</i><span><b>${x[2]}</b><span class="m">${x[3]}</span></span></div>`).join("");
+ $("#like").innerHTML=P.filter(x=>x.id!=p.id).sort((a,b)=>(b.c==p.c)-(a.c==p.c)).slice(0,4).map(x=>feat(x).replace(">"+"<svg class=\"i\"><use href=\"#leaf\"/></svg>Enquire",">View Details")).join("");
+ document.querySelectorAll("#like .fc").forEach(f=>{f.onclick=()=>open(f.dataset.id);const a=f.querySelector("a");a.removeAttribute("href");a.removeAttribute("target");a.textContent="View Details";a.onclick=e=>{e.stopPropagation();open(f.dataset.id)}});
+}
+$("#lb").onclick=()=>$("#lb").classList.remove("on");addEventListener("keydown",e=>e.key=="Escape"&&$("#lb").classList.remove("on"));
+document.querySelectorAll("#feat .fc").forEach(f=>f.onclick=()=>open(f.dataset.id));
+$("#cf").onsubmit=e=>{e.preventDefault();const d=new FormData(e.target);window.open(wa(`I am ${d.get("name")} (${d.get("phone")}). Plant: ${d.get("pl")}. ${d.get("msg")}`),"_blank")};
+const secs=["home","plants","about","contact"].map(i=>$("#"+i));
+addEventListener("scroll",()=>{let a="home";secs.forEach(s=>{if(s.getBoundingClientRect().top<120)a=s.id});document.querySelectorAll("#nv a").forEach(l=>l.classList.toggle("on",l.getAttribute("href")=="#"+a))},{passive:true});
+shop();detail();
+</script>
+</body>
+</html>
