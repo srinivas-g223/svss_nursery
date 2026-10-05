@@ -62,7 +62,6 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .fc:hover{transform:translateY(-4px);border-color:var(--green);box-shadow:0 12px 28px rgba(20,80,58,.08)}
 .fc:hover img{transform:scale(1.04)}
 .m{color:var(--mute);font-size:12.5px}
-.price{font-weight:700;font-size:19px}
 .ban{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,#e9efdf 40%,var(--bg));min-height:150px;padding-left:5vw;overflow:hidden;position:relative}
 .ban h2{font-size:clamp(34px,5vw,54px);margin:6px 0}
 .ban .hw{position:absolute;left:52%;top:40px;width:80px;animation:softFloat 5s ease-in-out infinite}
@@ -103,7 +102,6 @@ select,input,textarea{padding:9px 12px;border:1px solid var(--line);border-radiu
 .th img{width:84px;height:86px;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer}
 .th img.on{border-color:var(--green)}
 .det h1{font-size:46px;margin:4px 0}
-.det .price{font-size:32px;margin:10px 0}
 .sizes{display:flex;gap:10px;margin:6px 0 18px}
 .sizes button{padding:8px 24px;border:1.5px solid var(--line);background:#fff;border-radius:8px;font:500 14px Inter,sans-serif;cursor:pointer}
 .sizes button.on{border-color:var(--green);background:var(--tint)}
@@ -166,7 +164,7 @@ form label{font-weight:600;font-size:13px;display:grid;gap:4px}
 <div class="sech"><h2>Featured Plants</h2><a href="#plants">View all plants →</a></div><div class="feat" id="feat"></div>
 
 <section id="plants"><div class="ban"><div><span class="kick">OUR PLANTS</span><h2>Find your perfect plant</h2><p>A greener home is a happier home</p></div><div class="hw">More Plants Brighter Days</div><img src="images/banner.jpg" alt="Potted plants on a shelf"></div>
-<div class="shop"><aside class="flt" id="flt"></aside><div><div class="bar"><span id="cnt"></span><label>Sort by <select id="sort"><option value="f">Featured</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option></select></label></div><div class="grid" id="grid"></div></div></div></section>
+<div class="shop"><aside class="flt" id="flt"></aside><div><div class="bar"><span id="cnt"></span></div><div class="grid" id="grid"></div></div></div></section>
 
 <section id="detail"><div class="crumb" id="crumb"></div><div class="det" id="det"></div><div class="care" id="care"></div><div class="sech"><h2>You may also like</h2><a href="#plants">View all plants →</a></div><div class="feat" id="like"></div></section>
 
@@ -194,23 +192,22 @@ form label{font-weight:600;font-size:13px;display:grid;gap:4px}
 const WA="918074172504",PHONE="+91 80741 72504";
 const ADDRESS="Industrial Colony Rd, Dowlaiswaram Industrial Estate, Dhavaleswaram, Rajahmundry, Andhra Pradesh 533125";
 const MAPQ="Industrial Colony Rd, Dowlaiswaram Industrial Estate, Dhavaleswaram, Rajahmundry, Andhra Pradesh 533125";
-// Plants: change names, prices, photos (put your files in the images folder)
+// Plants: change names and photos (put your files in the images folder)
 const SZ={S:"Small (up to 1 ft)",M:"Medium (1–3 ft)",L:"Large (above 3 ft)"},LT=["Low Light","Indirect Light","Full Sun"];
 const CATS=[["Indoor Plants","cat-indoor","Indoor Plants"],["Flowering Plants","cat-flowering","Flowering Plants"],["Fruit Trees","cat-fruit","Fruit Trees"],["Herbal","cat-herbal","Herbal and Medicinal"],["Pots and Soil","cat-pots","Pots and Soil"]];
-const PR=[["Under ₹100",0,99],["₹100 – ₹200",100,200],["₹200 – ₹500",201,500],["Above ₹500",501,1e9]];
 const P=[
-{id:1,n:"Money Plant",c:"Indoor Plants",z:"M",l:1,p:120,im:"money",t:"Brighten your space with fresh greens"},
-{id:2,n:"Hibiscus",c:"Flowering Plants",z:"M",l:2,p:80,im:"hibiscus",t:"Vibrant blooms all season"},
-{id:3,n:"Mango Sapling",c:"Fruit Trees",z:"L",l:2,p:250,im:"mango",t:"Grow your own mangoes at home"},
-{id:4,n:"Tulsi",c:"Herbal",z:"S",l:2,p:40,im:"tulsi",t:"Sacred. Healthy. Always useful."},
-{id:5,n:"Rose Plant",c:"Flowering Plants",z:"M",l:2,p:90,im:"rose",t:"Classic blooms for any garden"},
-{id:6,n:"Jasmine",c:"Flowering Plants",z:"M",l:1,p:70,im:"jasmine",t:"Fragrant white flowers"},
-{id:7,n:"Snake Plant",c:"Indoor Plants",z:"M",l:0,p:180,im:"snake",best:1,t:"Tough. Beautiful. Purifies your air.",d:"The Snake Plant (Sansevieria) is a low-maintenance indoor plant known for its striking upright leaves and air-purifying qualities. Perfect for homes and offices, it thrives in a variety of conditions and is a great choice for both beginners and plant lovers.",g:["snake-main","snake-t1","snake-t2","snake-t3","snake-t4"]},
-{id:8,n:"Lemon Tree",c:"Fruit Trees",z:"L",l:2,p:220,im:"lemon",t:"Fresh lemons from your own tree"},
-{id:9,n:"Aloe Vera",c:"Herbal",z:"S",l:1,p:60,im:"aloe",pt:"aloe-p",t:"Healing goodness at home"},
-{id:10,n:"Areca Palm",c:"Indoor Plants",z:"L",l:1,p:300,im:"areca",pt:"areca-p",t:"Bring a tropical touch indoors"},
-{id:11,n:"ZZ Plant",c:"Indoor Plants",z:"M",l:0,p:200,im:"zz",t:"Stylish. Strong. Super low maintenance."},
-{id:12,n:"Terracotta Pot",c:"Pots and Soil",z:"S",l:0,p:150,im:"cat-pots",t:"Classic clay pot with drainage"}];
+{id:1,n:"Money Plant",c:"Indoor Plants",z:"M",l:1,im:"money",t:"Brighten your space with fresh greens"},
+{id:2,n:"Hibiscus",c:"Flowering Plants",z:"M",l:2,im:"hibiscus",t:"Vibrant blooms all season"},
+{id:3,n:"Mango Sapling",c:"Fruit Trees",z:"L",l:2,im:"mango",t:"Grow your own mangoes at home"},
+{id:4,n:"Tulsi",c:"Herbal",z:"S",l:2,im:"tulsi",t:"Sacred. Healthy. Always useful."},
+{id:5,n:"Rose Plant",c:"Flowering Plants",z:"M",l:2,im:"rose",t:"Classic blooms for any garden"},
+{id:6,n:"Jasmine",c:"Flowering Plants",z:"M",l:1,im:"jasmine",t:"Fragrant white flowers"},
+{id:7,n:"Snake Plant",c:"Indoor Plants",z:"M",l:0,im:"snake",best:1,t:"Tough. Beautiful. Purifies your air.",d:"The Snake Plant (Sansevieria) is a low-maintenance indoor plant known for its striking upright leaves and air-purifying qualities. Perfect for homes and offices, it thrives in a variety of conditions and is a great choice for both beginners and plant lovers.",g:["snake-main","snake-t1","snake-t2","snake-t3","snake-t4"]},
+{id:8,n:"Lemon Tree",c:"Fruit Trees",z:"L",l:2,im:"lemon",t:"Fresh lemons from your own tree"},
+{id:9,n:"Aloe Vera",c:"Herbal",z:"S",l:1,im:"aloe",pt:"aloe-p",t:"Healing goodness at home"},
+{id:10,n:"Areca Palm",c:"Indoor Plants",z:"L",l:1,im:"areca",pt:"areca-p",t:"Bring a tropical touch indoors"},
+{id:11,n:"ZZ Plant",c:"Indoor Plants",z:"M",l:0,im:"zz",t:"Stylish. Strong. Super low maintenance."},
+{id:12,n:"Terracotta Pot",c:"Pots and Soil",z:"S",l:0,im:"cat-pots",t:"Classic clay pot with drainage"}];
 const $=s=>document.querySelector(s),src=n=>`images/${n}.jpg`,ic=n=>`<svg class="i"><use href="#${n}"/></svg>`;
 const wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent("Hi SVSS Nursery, "+t)}`;
 document.querySelectorAll("[data-wa]").forEach(a=>a.href=wa(a.dataset.wa));
@@ -218,30 +215,29 @@ $("#ph").textContent=PHONE;$("#ph2").textContent=PHONE;$("#ad").textContent=ADDR
 const q=encodeURIComponent(MAPQ);$("#mapf").src=`https://www.google.com/maps?q=${q}&output=embed`;
 $("#dir").href=`https://www.google.com/maps/dir/?api=1&destination=${q}`;$("#big").href=`https://www.google.com/maps/search/?api=1&query=${q}`;
 $("#pl").innerHTML="<option>Select an option</option>"+P.map(p=>`<option>${p.n}</option>`).join("");
-let F={cat:[],z:[],l:[],pr:[],sort:"f"},cur=P[6],fav=new Set();
+let F={cat:[],z:[],l:[]},cur=P[6],fav=new Set();
 const open=id=>{cur=P.find(p=>p.id==id);detail();$("#detail").scrollIntoView()};
-const feat=p=>`<div class="fc" data-id="${p.id}"><img src="${src(p.pt||p.im)}" alt="${p.n}"><div><h3>${p.n}</h3><span class="m">${p.t}</span><span class="price">₹${p.p}</span><a class="btn sm" target="_blank" rel="noopener" href="${wa("I want to enquire about "+p.n)}" onclick="event.stopPropagation()">${ic("leaf")}Enquire</a></div></div>`;
+const feat=p=>`<div class="fc" data-id="${p.id}"><img src="${src(p.pt||p.im)}" alt="${p.n}"><div><h3>${p.n}</h3><span class="m">${p.t}</span><a class="btn sm" target="_blank" rel="noopener" href="${wa("I want to enquire about "+p.n)}" onclick="event.stopPropagation()">${ic("leaf")}Enquire</a></div></div>`;
 $("#cats").innerHTML=CATS.map(c=>`<button class="cat" data-c="${c[0]}"><img src="${src(c[1])}" alt="${c[2]}"><span>${c[2]} <b>→</b></span></button>`).join("");
 $("#feat").innerHTML=P.slice(0,4).map(feat).join("");
 const chk=(g,k,items,cnt)=>`<details open><summary>${g}</summary>${items.map(([v,t])=>`<label><input type="checkbox" data-k="${k}" value="${v}" ${F[k].includes(String(v))?"checked":""}> ${t} (${cnt(v)})</label>`).join("")}</details>`;
 function shop(){
- const ok=p=>(!F.cat.length||F.cat.includes(p.c))&&(!F.z.length||F.z.includes(p.z))&&(!F.l.length||F.l.includes(String(p.l)))&&(!F.pr.length||F.pr.some(i=>p.p>=PR[i][1]&&p.p<=PR[i][2]));
- const r=P.filter(ok);if(F.sort=="lo")r.sort((a,b)=>a.p-b.p);if(F.sort=="hi")r.sort((a,b)=>b.p-a.p);
- $("#flt").innerHTML=`<h3>Filters <button id="clr">Clear all</button></h3>`+chk("Category","cat",CATS.map(c=>[c[0],c[2]]),v=>P.filter(p=>p.c==v).length)+chk("Size","z",Object.entries(SZ),v=>P.filter(p=>p.z==v).length)+chk("Sunlight","l",LT.map((t,i)=>[i,t]),v=>P.filter(p=>p.l==v).length)+chk("Price","pr",PR.map((x,i)=>[i,x[0]]),v=>P.filter(p=>p.p>=PR[v][1]&&p.p<=PR[v][2]).length);
- $("#cnt").textContent=r.length+" plants";$("#sort").value=F.sort;
- $("#grid").innerHTML=r.length?r.map(p=>`<article class="card"><div class="iw"><img src="${src(p.im)}" alt="${p.n}" data-id="${p.id}"><button class="hb ${fav.has(p.id)?"on":""}" data-h="${p.id}" aria-label="Save ${p.n}">${ic("heart")}</button></div><div class="b"><h3>${p.n}</h3><span class="m">🪴 ${SZ[p.z]}</span><div class="f"><span class="price">₹${p.p}</span><a class="btn sm" target="_blank" rel="noopener" href="${wa("I want to enquire about "+p.n)}">${ic("leaf")}Enquire</a></div></div></article>`).join(""):`<p class="empty">No plants match these filters. Clear a filter to see more.</p>`;
- $("#clr").onclick=()=>{F={cat:[],z:[],l:[],pr:[],sort:"f"};shop()};
+ const ok=p=>(!F.cat.length||F.cat.includes(p.c))&&(!F.z.length||F.z.includes(p.z))&&(!F.l.length||F.l.includes(String(p.l)));
+ const r=P.filter(ok);
+ $("#flt").innerHTML=`<h3>Filters <button id="clr">Clear all</button></h3>`+chk("Category","cat",CATS.map(c=>[c[0],c[2]]),v=>P.filter(p=>p.c==v).length)+chk("Size","z",Object.entries(SZ),v=>P.filter(p=>p.z==v).length)+chk("Sunlight","l",LT.map((t,i)=>[i,t]),v=>P.filter(p=>p.l==v).length);
+ $("#cnt").textContent=r.length+" plants";
+ $("#grid").innerHTML=r.length?r.map(p=>`<article class="card"><div class="iw"><img src="${src(p.im)}" alt="${p.n}" data-id="${p.id}"><button class="hb ${fav.has(p.id)?"on":""}" data-h="${p.id}" aria-label="Save ${p.n}">${ic("heart")}</button></div><div class="b"><h3>${p.n}</h3><span class="m">🪴 ${SZ[p.z]}</span><div class="f"><a class="btn sm" target="_blank" rel="noopener" href="${wa("I want to enquire about "+p.n)}">${ic("leaf")}Enquire</a></div></div></article>`).join(""):`<p class="empty">No plants match these filters. Clear a filter to see more.</p>`;
+ $("#clr").onclick=()=>{F={cat:[],z:[],l:[]};shop()};
  document.querySelectorAll("[data-k]").forEach(i=>i.onchange=()=>{const a=F[i.dataset.k];i.checked?a.push(i.value):a.splice(a.indexOf(i.value),1);shop()});
  document.querySelectorAll("#grid img").forEach(i=>i.onclick=()=>open(i.dataset.id));
  document.querySelectorAll(".hb").forEach(b=>b.onclick=()=>{const id=+b.dataset.h;fav.has(id)?fav.delete(id):fav.add(id);b.classList.toggle("on")});
 }
-$("#sort").onchange=e=>{F.sort=e.target.value;shop()};
-document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{F={cat:[b.dataset.c],z:[],l:[],pr:[],sort:F.sort};shop();$("#plants").scrollIntoView()});
+document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{F={cat:[b.dataset.c],z:[],l:[]};shop();$("#plants").scrollIntoView()});
 function detail(){
  const p=cur,g=p.g||[p.im];let size=p.z;
  $("#crumb").innerHTML=`<div><a href="#plants">← Back to Plants</a> › ${CATS.find(c=>c[0]==p.c)[2]} › ${p.n}</div><span>${ic("leaf")}Greener Homes Happier Lives</span>`;
  $("#det").innerHTML=`<div class="gal"><div class="iw"><img id="bigimg" src="${src(g[0])}" alt="${p.n}">${p.best?'<span class="bs">✓ Bestseller</span>':""}<button class="zoom" id="zm">🔍 Click to view larger</button></div><div class="th">${g.length>1?g.map((x,i)=>`<img class="${i?"":"on"}" src="${src(x)}" alt="${p.n} view ${i+1}">`).join(""):""}</div></div>
- <div><span class="kick">${p.c.toUpperCase()}</span><h1>${p.n}</h1><p style="font-size:16px;color:var(--mute)">${p.t}</p><div class="price">₹${p.p} <small class="m">Inclusive of all taxes</small></div><p class="m" style="font-size:14px;margin-bottom:12px">${p.d||"Healthy and nursery-grown. Message us on WhatsApp to check size, stock and delivery."}</p>
+ <div><span class="kick">${p.c.toUpperCase()}</span><h1>${p.n}</h1><p style="font-size:16px;color:var(--mute)">${p.t}</p><p class="m" style="font-size:14px;margin-bottom:12px">${p.d||"Healthy and nursery-grown. Message us on WhatsApp to check size, stock and delivery."}</p>
  <b>Size</b><div class="sizes">${Object.entries(SZ).map(([k,v])=>`<button data-z="${k}" class="${k==size?"on":""}">${v.split(" ")[0]}</button>`).join("")}</div>
  <div class="row"><a id="wab" class="btn" style="flex:1.4" target="_blank" rel="noopener">${ic("wa")}Enquire on WhatsApp</a><a class="btn out" style="flex:1" href="tel:${PHONE.replace(/\s/g,"")}">${ic("ph")}Call Us</a></div>
  <div class="trust"><span>${ic("tr")}Fresh from our nursery</span><span>${ic("leaf")}Healthy &amp; vibrant plants</span><span>${ic("us")}Trusted by plant lovers</span></div></div>`;
