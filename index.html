@@ -233,7 +233,7 @@ const chk=(g,k,items,cnt)=>`<details open><summary>${g}</summary>${items.map(([v
 function shop(){
  const ok=p=>(!F.cat.length||F.cat.includes(p.c))&&(!F.z.length||F.z.includes(p.z))&&(!F.l.length||F.l.includes(String(p.l)));
  const r=P.filter(ok);
- $("#flt").innerHTML=`<h3>Filters <button id="clr">Clear all</button></h3>`+chk("Category","cat",CATS.map(c=>[c[0],c[2]]),v=>P.filter(p=>p.c==v).length)+chk("Size","z",Object.entries(SZ),v=>P.filter(p=>p.z==v).length)+chk("Sunlight","l",LT.map((t,i)=>[i,t]),v=>P.filter(p=>p.l==v).length);
+ $("#flt").innerHTML=`<h3>Filters <button id="clr">Clear all</button></h3>`+chk("Size","z",Object.entries(SZ),v=>P.filter(p=>p.z==v).length)+chk("Sunlight","l",LT.map((t,i)=>[i,t]),v=>P.filter(p=>p.l==v).length);
  $("#cnt").textContent=r.length+" plants";
  $("#grid").innerHTML=r.length?r.map(p=>`<article class="card"><div class="iw"><img src="${src(p.im)}" alt="${p.n}" data-id="${p.id}"><button class="hb ${fav.has(p.id)?"on":""}" data-h="${p.id}" aria-label="Save ${p.n}">${ic("heart")}</button></div><div class="b"><h3>${p.n}</h3><span class="m">🪴 ${SZ[p.z]}</span><div class="f"><a class="btn sm" target="_blank" rel="noopener" href="${wa("I want to enquire about "+p.n)}">${ic("leaf")}Enquire</a></div></div></article>`).join(""):`<p class="empty">No plants match these filters. Clear a filter to see more.</p>`;
  $("#clr").onclick=()=>{F={cat:[],z:[],l:[]};shop()};
