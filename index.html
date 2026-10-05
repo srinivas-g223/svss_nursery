@@ -67,18 +67,10 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .ban h2{font-size:clamp(34px,5vw,54px);margin:6px 0}
 .ban .hw{position:absolute;left:52%;top:40px;width:80px;animation:softFloat 5s ease-in-out infinite}
 .ban img{height:150px;width:44%;object-fit:cover;object-position:left;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}
-.shop{display:grid;grid-template-columns:240px 1fr;gap:22px;padding:26px 5vw 44px;align-items:start}
-.flt{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;animation:fadeUp .85s ease both}
-.flt h3{font:600 16px Inter,sans-serif;display:flex;justify-content:space-between;margin-bottom:6px}
-.flt h3 button{background:none;border:0;color:var(--green);font-weight:600;cursor:pointer;font-size:13px}
-.flt details{border-top:1px solid var(--line);padding:10px 0 4px}
-.flt summary{font-weight:600;font-size:14px;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
-.flt summary::after{content:"⌄"}
-.flt label{display:flex;gap:8px;align-items:center;font-size:13px;padding:2px 0;cursor:pointer}
-.flt input{width:auto}
+.shop{display:grid;grid-template-columns:1fr;padding:26px 5vw 44px}
 .bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;color:var(--mute);font-size:13px}
+.all-plants{border:0;background:none;color:var(--green);font:600 13px Inter,sans-serif;cursor:pointer;text-decoration:underline}
 select,input,textarea{padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;font:inherit;width:100%}
-.bar select{width:auto}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
 .card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease;animation:fadeUp .8s ease both}
 .iw{position:relative}
@@ -144,7 +136,7 @@ form label{font-weight:600;font-size:13px;display:grid;gap:4px}
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;place-items:center;z-index:20;padding:20px}
 #lb.on{display:grid}
 #lb img{max-width:100%;max-height:90vh;border-radius:10px}
-@media(max-width:860px){.hero,.det,.shop,#about,.ct{grid-template-columns:1fr}.cats{grid-template-columns:repeat(2,1fr)}.care{grid-template-columns:1fr}.hw{display:none}.col{min-height:300px}.flt{order:2}.two{grid-template-columns:1fr}.gal{grid-template-columns:1fr}.th{flex-direction:row}}
+@media(max-width:860px){.hero,.det,.shop,#about,.ct{grid-template-columns:1fr}.cats{grid-template-columns:repeat(2,1fr)}.care{grid-template-columns:1fr}.hw{display:none}.col{min-height:300px}.two{grid-template-columns:1fr}.gal{grid-template-columns:1fr}.th{flex-direction:row}}
 @media(max-width:560px){.nav nav{display:none}.col{min-height:200px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card img{height:130px}#about img,.pic img{height:auto;aspect-ratio:1222/608}}
 </style>
 </head>
@@ -170,7 +162,7 @@ form label{font-weight:600;font-size:13px;display:grid;gap:4px}
 <div class="sech"><h2>Featured Plants</h2><a href="#plants">View all plants →</a></div><div class="feat" id="feat"></div>
 
 <section id="plants"><div class="ban"><div><span class="kick">OUR PLANTS</span><h2>Find your perfect plant</h2><p>A greener home is a happier home</p></div><div class="hw">More Plants Brighter Days</div><img src="images/banner.jpg" alt="Potted plants on a shelf"></div>
-<div class="shop"><aside class="flt" id="flt"></aside><div><div class="bar"><span id="cnt"></span></div><div class="grid" id="grid"></div></div></div></section>
+<div class="shop"><div><div class="bar"><span id="cnt"></span><button class="all-plants" id="allPlants" hidden>View all plants</button></div><div class="grid" id="grid"></div></div></div></section>
 
 <section id="detail"><div class="crumb" id="crumb"></div><div class="det" id="det"></div><div class="care" id="care"></div><div class="sech"><h2>You may also like</h2><a href="#plants">View all plants →</a></div><div class="feat" id="like"></div></section>
 
@@ -224,24 +216,22 @@ $("#ph").textContent=PHONE;$("#ph2").textContent=PHONE;$("#ad").textContent=ADDR
 const q=encodeURIComponent(MAPQ);$("#mapf").src=`https://www.google.com/maps?q=${q}&output=embed`;
 $("#dir").href=`https://www.google.com/maps/dir/?api=1&destination=${q}`;$("#big").href=`https://www.google.com/maps/search/?api=1&query=${q}`;
 $("#pl").innerHTML="<option>Select an option</option>"+P.map(p=>`<option>${p.n}</option>`).join("");
-let F={cat:[],z:[],l:[]},cur=P[6],fav=new Set();
+let F={cat:[]},cur=P[6],fav=new Set();
 const open=id=>{cur=P.find(p=>p.id==id);detail();$("#detail").scrollIntoView()};
 const feat=p=>`<div class="fc" data-id="${p.id}"><img src="${src(p.pt||p.im)}" alt="${p.n}"><div><h3>${p.n}</h3><span class="m">${p.t}</span><a class="btn sm" target="_blank" rel="noopener" href="${wa("I want to enquire about "+p.n)}" onclick="event.stopPropagation()">${ic("leaf")}Enquire</a></div></div>`;
 $("#cats").innerHTML=CATS.map(c=>`<button class="cat" data-c="${c[0]}"><img src="${src(c[1])}" alt="${c[2]}"><span>${c[2]} <b>→</b></span></button>`).join("");
 $("#feat").innerHTML=P.slice(0,4).map(feat).join("");
-const chk=(g,k,items,cnt)=>`<details open><summary>${g}</summary>${items.map(([v,t])=>`<label><input type="checkbox" data-k="${k}" value="${v}" ${F[k].includes(String(v))?"checked":""}> ${t} (${cnt(v)})</label>`).join("")}</details>`;
 function shop(){
- const ok=p=>(!F.cat.length||F.cat.includes(p.c))&&(!F.z.length||F.z.includes(p.z))&&(!F.l.length||F.l.includes(String(p.l)));
+ const ok=p=>!F.cat.length||F.cat.includes(p.c);
  const r=P.filter(ok);
- $("#flt").innerHTML=`<h3>Filters <button id="clr">Clear all</button></h3>`+chk("Size","z",Object.entries(SZ),v=>P.filter(p=>p.z==v).length)+chk("Sunlight","l",LT.map((t,i)=>[i,t]),v=>P.filter(p=>p.l==v).length);
  $("#cnt").textContent=r.length+" plants";
- $("#grid").innerHTML=r.length?r.map(p=>`<article class="card"><div class="iw"><img src="${src(p.im)}" alt="${p.n}" data-id="${p.id}"><button class="hb ${fav.has(p.id)?"on":""}" data-h="${p.id}" aria-label="Save ${p.n}">${ic("heart")}</button></div><div class="b"><h3>${p.n}</h3><span class="m">🪴 ${SZ[p.z]}</span><div class="f"><a class="btn sm" target="_blank" rel="noopener" href="${wa("I want to enquire about "+p.n)}">${ic("leaf")}Enquire</a></div></div></article>`).join(""):`<p class="empty">No plants match these filters. Clear a filter to see more.</p>`;
- $("#clr").onclick=()=>{F={cat:[],z:[],l:[]};shop()};
- document.querySelectorAll("[data-k]").forEach(i=>i.onchange=()=>{const a=F[i.dataset.k];i.checked?a.push(i.value):a.splice(a.indexOf(i.value),1);shop()});
+ $("#allPlants").hidden=!F.cat.length;
+ $("#grid").innerHTML=r.length?r.map(p=>`<article class="card"><div class="iw"><img src="${src(p.im)}" alt="${p.n}" data-id="${p.id}"><button class="hb ${fav.has(p.id)?"on":""}" data-h="${p.id}" aria-label="Save ${p.n}">${ic("heart")}</button></div><div class="b"><h3>${p.n}</h3><span class="m">🪴 ${SZ[p.z]}</span><div class="f"><a class="btn sm" target="_blank" rel="noopener" href="${wa("I want to enquire about "+p.n)}">${ic("leaf")}Enquire</a></div></div></article>`).join(""):`<p class="empty">No plants found in this category.</p>`;
  document.querySelectorAll("#grid img").forEach(i=>i.onclick=()=>open(i.dataset.id));
  document.querySelectorAll(".hb").forEach(b=>b.onclick=()=>{const id=+b.dataset.h;fav.has(id)?fav.delete(id):fav.add(id);b.classList.toggle("on")});
 }
-document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{F={cat:[b.dataset.c],z:[],l:[]};shop();$("#plants").scrollIntoView()});
+$("#allPlants").onclick=()=>{F={cat:[]};shop()};
+document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{F={cat:[b.dataset.c]};shop();$("#plants").scrollIntoView()});
 function detail(){
  const p=cur,g=p.g||[p.im];let size=p.z;
  $("#crumb").innerHTML=`<div><a href="#plants">← Back to Plants</a> › ${CATS.find(c=>c[0]==p.c)[2]} › ${p.n}</div><span>${ic("leaf")}Greener Homes Happier Lives</span>`;
