@@ -32,17 +32,21 @@ a{color:inherit;text-decoration:none}
 svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .kick{color:var(--leaf);font-weight:600;font-size:12px;letter-spacing:.12em}
 .lf{position:absolute;opacity:.18;pointer-events:none}
-.hero{display:grid;grid-template-columns:1fr 1.25fr;background:linear-gradient(100deg,var(--bg) 60%,#e9efdf)}
-.hero .tx{padding:56px 3vw 56px 5vw;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;animation:fadeUp .8s ease both}
-.hero h1{font-size:clamp(46px,6.5vw,84px);color:var(--green);margin:12px 0 14px;animation:fadeUp .9s ease both}
-.hero p{font-size:19px;margin-bottom:24px;animation:fadeUp .95s ease both}
+.hero{position:relative;display:flex;align-items:center;min-height:calc(100svh - 94px);overflow:hidden;background:#173c2b}
+.hero::after{position:absolute;inset:0;content:"";background:linear-gradient(90deg,rgba(10,39,26,.16) 0%,rgba(10,39,26,.35) 38%,rgba(10,39,26,.84) 64%,rgba(10,39,26,.88) 100%);pointer-events:none}
+.hero .tx{position:relative;z-index:1;width:min(100%,760px);margin-left:auto;padding:clamp(40px,7vh,76px) 5vw;display:flex;flex-direction:column;justify-content:center;animation:fadeUp .8s ease both}
+.hero .lf{display:none}
+.hero .kick{color:#d8edc9}
+.hero h1{font-size:clamp(46px,6.5vw,84px);color:#fff;margin:12px 0 14px;animation:fadeUp .9s ease both}
+.hero p{font-size:19px;color:#f0f5ef;margin-bottom:24px;animation:fadeUp .95s ease both}
 .row{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp 1s ease both}
 .trust{display:flex;gap:18px;flex-wrap:wrap;color:var(--mute);font-size:12.5px;margin-top:26px}
+.hero .trust{color:#edf4eb}
 .trust span{display:flex;gap:6px;align-items:center}
 .trust svg{color:var(--leaf)}
-.hero .hw{position:absolute;right:1.5vw;top:96px;width:90px;animation:softFloat 4s ease-in-out infinite}
-.col{height:430px;margin:24px 5vw 24px 0;border-radius:18px;overflow:hidden;box-shadow:0 18px 42px rgba(20,80,58,.13);animation:fadeUp .9s ease both}
-.col img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .5s ease}
+.hero .hw{display:none}
+.col{position:absolute;inset:0;margin:0;border-radius:0;overflow:hidden;animation:none}
+.col img{width:100%;height:100%;object-fit:cover;object-position:right center;display:block;transition:transform .5s ease}
 .col img:hover{transform:scale(1.02)}
 .cats{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:22px 5vw 6px}
 .cat{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;text-align:left;font:500 14px Inter,sans-serif;padding:0;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;animation:fadeUp .8s ease both}
@@ -135,8 +139,8 @@ form label{font-weight:600;font-size:13px;display:grid;gap:4px}
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;place-items:center;z-index:20;padding:20px}
 #lb.on{display:grid}
 #lb img{max-width:100%;max-height:90vh;border-radius:10px}
-@media(max-width:860px){.hero,.det,.shop,#about,.ct{grid-template-columns:1fr}.cats{grid-template-columns:repeat(2,1fr)}.care{grid-template-columns:1fr}.hw{display:none}.col{height:300px;margin:0 5vw 24px}.two{grid-template-columns:1fr}.gal{grid-template-columns:1fr}.th{flex-direction:row}}
-@media(max-width:560px){.nav nav{display:none}.col{height:240px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card img{height:130px}#about img,.pic img{height:auto;aspect-ratio:1222/608}}
+@media(max-width:860px){.hero,.det,.shop,#about,.ct{grid-template-columns:1fr}.hero{min-height:calc(100svh - 94px)}.hero::after{background:linear-gradient(180deg,rgba(10,39,26,.62),rgba(10,39,26,.78))}.hero .tx{width:100%;margin:0;padding:44px 6vw}.cats{grid-template-columns:repeat(2,1fr)}.care{grid-template-columns:1fr}.hw{display:none}.two{grid-template-columns:1fr}.gal{grid-template-columns:1fr}.th{flex-direction:row}}
+@media(max-width:560px){.nav nav{display:none}.hero{min-height:calc(100svh - 94px)}.hero .tx{padding:36px 6vw}.hero p{font-size:17px}.hero .trust{gap:10px 16px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card img{height:130px}#about img,.pic img{height:auto;aspect-ratio:1222/608}}
 </style>
 </head>
 <body>
@@ -156,7 +160,7 @@ form label{font-weight:600;font-size:13px;display:grid;gap:4px}
 <section class="hero" id="home"><div class="tx"><svg class="lf" style="left:-40px;top:200px;width:150px;height:150px;color:var(--leaf)"><use href="#leaf"/></svg><span class="kick">PLANTS TODAY &nbsp;·&nbsp; A GREENER TOMORROW</span><h1>Grow your green space</h1><p>Healthy plants straight from our nursery</p>
 <div class="row"><a class="btn" href="#plants"><svg class="i"><use href="#leaf"/></svg>Browse Plants →</a><a class="btn out" data-wa="I want to know about your plants" target="_blank" rel="noopener"><svg class="i"><use href="#wa"/></svg>WhatsApp Us</a></div>
 <div class="trust"><span><svg class="i"><use href="#tr"/></svg>Fresh from our nursery</span><span><svg class="i"><use href="#leaf"/></svg>Wide variety</span><span><svg class="i"><use href="#us"/></svg>Trusted by plant lovers</span></div><div class="hw">Happier Homes Greener Tomorrows</div></div>
-<div class="col"><img src="images/hero2.jpg" alt="Lush green foliage at SVSS Nursery"></div></section>
+<div class="col"><img src="images/garden.jpg" alt="Green plants and flowers growing at SVSS Nursery"></div></section>
 <div class="cats" id="cats"></div>
 <div class="sech"><h2>Featured Plants</h2><a href="#plants">View all plants →</a></div><div class="feat" id="feat"></div>
 
